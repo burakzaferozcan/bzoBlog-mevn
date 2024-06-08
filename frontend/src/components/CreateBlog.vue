@@ -1,15 +1,17 @@
 <template>
-  <div>
-    <h2>Blog Oluştur</h2>
-    <form @submit.prevent="createBlog">
+  <div class="wrapper">
+    <form @submit.prevent="createBlog" class="form">
+      <label>Blog Fotoğrafı</label>
+      <input type="file" @change="onFileChange" />
+      <label>Blog Başlığı</label>
       <input v-model="title" placeholder="Başlık" required />
       <vue-quill-editor
+        toolbar="full"
         v-model="content"
         class="quil-editor"
         ref="quillEditor"
         @ready="onEditorReady"
       />
-      <input type="file" @change="onFileChange" />
       <button type="submit">Oluştur</button>
     </form>
   </div>
@@ -21,7 +23,6 @@ import { useBlogStore } from "../stores/blogStore";
 import { QuillEditor } from "@vueup/vue-quill";
 import "@vueup/vue-quill/dist/vue-quill.snow.css";
 import axios from "axios";
-
 export default {
   components: {
     "vue-quill-editor": QuillEditor,
@@ -100,8 +101,32 @@ export default {
 </script>
 
 <style scoped>
-.quil-editor {
-  width: 500px;
+.wrapper {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+.wrapper h2 {
+  margin: 20px;
+}
+.form {
+  margin-top: 100px;
   display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+label {
+  color: #390054;
+}
+button {
+  background-color: #390054;
+  color: white;
+  border: none;
+  padding: 10px;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: all 0.3s;
+}
+button:hover {
+  background-color: #390054d3;
 }
 </style>

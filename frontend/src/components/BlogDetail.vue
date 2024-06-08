@@ -1,13 +1,15 @@
 <template>
-  <div class="container">
-    <h2 v-if="blog">{{ blog.title }}</h2>
-    <p v-else>Loading...</p>
-    <img
-      class="blog-image"
-      v-if="blog && blog.titleImage"
-      :src="getImageUrl(blog.titleImage)"
-      :alt="blog.title"
-    />
+  <div class="wrapper">
+    <div class="container">
+      <h2 v-if="blog">{{ blog.title }}</h2>
+      <p v-else>Loading...</p>
+      <img
+        class="blog-image"
+        v-if="blog && blog.titleImage"
+        :src="getImageUrl(blog.titleImage)"
+        :alt="blog.title"
+      />
+    </div>
     <div v-html="blog.content" class="blog-content" v-if="blog"></div>
   </div>
 </template>
@@ -50,6 +52,14 @@ export default {
 };
 </script>
 <style scoped>
+.wrapper {
+  margin: 0 auto;
+  border-left: 1px solid #390054;
+  border-right: 1px solid #390054;
+  border-bottom: 1px solid #390054;
+  border-radius: 25px;
+  max-width: 1200px;
+}
 .container {
   max-width: 1200px;
   margin: 0 auto;
@@ -64,7 +74,10 @@ export default {
   margin-bottom: 20px;
   max-width: 1000px;
 }
-.blog-content img {
-  max-width: 500px !important;
+
+.blog-content {
+  margin: 0 auto;
+
+  max-width: 1200px;
 }
 </style>
